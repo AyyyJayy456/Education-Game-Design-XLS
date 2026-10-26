@@ -1056,6 +1056,34 @@ PrefabInstance:
       value: Those cancer cells aren't going to clear themselves, Target those surface
         markers and fire!
       objectReference: {fileID: 0}
+    - target: {fileID: 1826697902163072513, guid: fcf9a89639825164c90c3d126cf61530, type: 3}
+      propertyPath: onDialogStop.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1826697902163072513, guid: fcf9a89639825164c90c3d126cf61530, type: 3}
+      propertyPath: onDialogStop.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1826697902163072513, guid: fcf9a89639825164c90c3d126cf61530, type: 3}
+      propertyPath: onDialogStop.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1931882666}
+    - target: {fileID: 1826697902163072513, guid: fcf9a89639825164c90c3d126cf61530, type: 3}
+      propertyPath: onDialogStop.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1826697902163072513, guid: fcf9a89639825164c90c3d126cf61530, type: 3}
+      propertyPath: onDialogStop.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartSpawning
+      objectReference: {fileID: 0}
+    - target: {fileID: 1826697902163072513, guid: fcf9a89639825164c90c3d126cf61530, type: 3}
+      propertyPath: onDialogStop.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: EnemySpawner, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1826697902163072513, guid: fcf9a89639825164c90c3d126cf61530, type: 3}
+      propertyPath: onDialogStop.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2060701909815246859, guid: fcf9a89639825164c90c3d126cf61530, type: 3}
       propertyPath: m_Name
       value: DialogueBox
@@ -1545,7 +1573,7 @@ GameObject:
   - component: {fileID: 1586817096}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1647,6 +1675,56 @@ Transform:
   - {fileID: 530683864}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1931882665
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1931882667}
+  - component: {fileID: 1931882666}
+  m_Layer: 0
+  m_Name: EnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1931882666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1931882665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c601cd254770dd04e8f51f43faf9832c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 6366352855619422309, guid: dba8b0e4695299a47aaaf615c52cf427, type: 3}
+  totalEnemies: 15
+  spawnInterval: 0.5
+  minX: 0
+  maxX: -4
+  spawnY: 3.5
+--- !u!4 &1931882667
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1931882665}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.28, y: -0.26, z: -0.06564246}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2078385549
 GameObject:
   m_ObjectHideFlags: 0
@@ -1745,3 +1823,4 @@ SceneRoots:
   - {fileID: 1363563105}
   - {fileID: 1124918970}
   - {fileID: 31370153}
+  - {fileID: 1931882667}
