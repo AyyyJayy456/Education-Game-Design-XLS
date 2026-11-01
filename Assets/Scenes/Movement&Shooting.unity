@@ -2299,6 +2299,8 @@ GameObject:
   - component: {fileID: 1586817098}
   - component: {fileID: 1586817097}
   - component: {fileID: 1586817096}
+  - component: {fileID: 1586817100}
+  - component: {fileID: 1586817101}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2403,6 +2405,37 @@ Transform:
   - {fileID: 530683864}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1586817100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586817095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af8ff9bfe1969954ab76602cc81a4937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+--- !u!114 &1586817101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586817095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c94ac9e6ff4920e429097fbf93146cce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 5
+  damage: 5
+  selfDamage: 15
+  coolDown: 10
+  fastDividingMultiplier: 2
+  wavePrefab: {fileID: 122701194993437444, guid: fe457a8e8ef74d44a94cd8c465e1d50c, type: 3}
 --- !u!1 &1813603107
 GameObject:
   m_ObjectHideFlags: 0
