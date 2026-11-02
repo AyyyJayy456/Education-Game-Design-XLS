@@ -182,3 +182,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   fastDividing: 0
+  isTagged: 0
+  tCell: {fileID: 4100395371505423155, guid: b023d62f6ac4a064d910d6c4ff7732f0, type: 3}
+  tCellNum: 5

@@ -2301,6 +2301,7 @@ GameObject:
   - component: {fileID: 1586817096}
   - component: {fileID: 1586817100}
   - component: {fileID: 1586817101}
+  - component: {fileID: 1586817102}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2436,6 +2437,22 @@ MonoBehaviour:
   coolDown: 10
   fastDividingMultiplier: 2
   wavePrefab: {fileID: 122701194993437444, guid: fe457a8e8ef74d44a94cd8c465e1d50c, type: 3}
+  waveActive: 0
+--- !u!114 &1586817102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586817095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14bf35bd1e9aa364ead940097c90e9d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagShot: {fileID: 3133383948760408591, guid: 56194185b9e2b284db3846b58538b1fa, type: 3}
+  firePoint: {fileID: 530683864}
+  cooldown: 1
 --- !u!1 &1813603107
 GameObject:
   m_ObjectHideFlags: 0

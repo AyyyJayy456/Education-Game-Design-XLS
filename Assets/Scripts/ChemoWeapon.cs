@@ -9,6 +9,7 @@ public class ChemoWeapon : MonoBehaviour
     private PlayerHealth playerHealth;
     public float fastDividingMultiplier = 2f;
     public GameObject wavePrefab;
+    public bool waveActive = false;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +21,7 @@ public class ChemoWeapon : MonoBehaviour
     void Update()
     {
         if (PauseManager.isPaused) return;
-        if (Input.GetMouseButtonDown(1) && Time.time >= nextUseTime)
+        if (Input.GetMouseButtonDown(1) && Time.time >= nextUseTime && waveActive)
         {
             nextUseTime = Time.time + coolDown;
             Debug.Log("Right Click");
