@@ -2,18 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// This script is for if the enemy is NOT targeting the player.
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] Transform playerTransform;
+    // Enemy rigidbody and default speed.
     [SerializeField] Rigidbody2D enemyRigidbody;
-    [SerializeField] float requiredPlayerDistance = 5f;
-    [SerializeField] float requiredDestroyDistance = 0.5f;
-
     [SerializeField] float defaultSpeed = 1f;
-    [SerializeField] float honingSpeed = 2f;
 
-    enum enemyStates {CLUNG, HONE, DESTROY};
-    private enemyStates currentState = enemyStates.CLUNG;
+    [SerializeField] GameManager manager;
+
+    // Bottom Collider
+    [SerializeField] Transform bottomCollider;
 
     void Awake()
     {
@@ -22,58 +21,28 @@ public class EnemyMovement : MonoBehaviour
 
     void Start()
     {
-        if(playerTransform == null)
-        {
-            playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        }
+        manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        bottomCollider = GameObject.FindGameObjectWithTag("Bottom").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        DetermineState();
-        SetBehavior();
+        transform.position += Vector3.down * defaultSpeed * Time.deltaTime;
     }
 
-    void DetermineState()
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        float currentDistance = Vector2.Distance(enemyRigidbody.position, playerTransform.position);
+        // If the enemy reaches the bottom of the screen
+        if(collision.Equals(bottomCollider.GetComponent<BoxCollider2D>()))
+        {
+            manager.IncreaseBreached();
+        }
+        // else if(collision.CompareTag("Bullet"))
+        // {
+        //     manager.IncreaseKilled();
+        // }
 
-        if(currentDistance > requiredPlayerDistance)
-        {
-            currentState = enemyStates.CLUNG;
-        }
-        else if(currentDistance > requiredDestroyDistance)
-        {
-            currentState = enemyStates.HONE;
-        }
-        else
-        {
-            currentState = enemyStates.DESTROY;
-        }
+        Destroy(gameObject);
     }
-
-    void SetBehavior()
-    {
-        switch(currentState)
-        {
-            case enemyStates.CLUNG:
-            {
-                transform.position += Vector3.down * defaultSpeed * Time.deltaTime;
-                break;
-            }
-            case enemyStates.HONE:
-            {
-                Vector2 target = playerTransform.position;
-                transform.position = Vector2.MoveTowards(transform.position, target, honingSpeed * Time.deltaTime);
-                break;
-            }
-            case enemyStates.DESTROY:
-            {
-                Destroy(gameObject);
-                break;
-            }
-        }
-    }
-
 }
