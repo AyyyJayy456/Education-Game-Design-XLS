@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6416533209157166658}
   - component: {fileID: 3361895097678820598}
   - component: {fileID: 8186920056143374762}
+  - component: {fileID: 4380686173232772787}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -163,7 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 0}
-  enemyRigidbody: {fileID: 0}
+  enemyRigidbody: {fileID: 6416533209157166658}
   requiredPlayerDistance: 10
   requiredDestroyDistance: 0.5
   defaultSpeed: 1
@@ -185,3 +186,19 @@ MonoBehaviour:
   isTagged: 0
   tCell: {fileID: 4100395371505423155, guid: b023d62f6ac4a064d910d6c4ff7732f0, type: 3}
   tCellNum: 5
+--- !u!114 &4380686173232772787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6366352855619422309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ae9b4145d2c45041a08b935afd18dd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyRigidbody: {fileID: 6416533209157166658}
+  defaultSpeed: 1
+  manager: {fileID: 0}
+  bottomCollider: {fileID: 0}
