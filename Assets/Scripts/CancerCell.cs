@@ -11,10 +11,13 @@ public class CancerCell : MonoBehaviour
     public GameObject tCell;
     public int tCellNum = 3;
 
+    GameManager manager;
+
     // Start is called before the first frame update
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
+        manager = FindAnyObjectByType<GameManager>();
     }
 
     // Update is called once per frame
@@ -30,6 +33,7 @@ public class CancerCell : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+            manager.IncreaseKilled();
         }
     }
 
