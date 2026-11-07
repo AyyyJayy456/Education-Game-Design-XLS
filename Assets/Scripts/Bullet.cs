@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public float moveSpeed;
     public Rigidbody2D rb;
+    public float damage;
 
     //public GameObject impactEffect;
 
@@ -23,6 +24,16 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            CancerCell cell = collision.gameObject.GetComponent<CancerCell>();
+            
+            if (cell != null)
+            {
+                cell.TakeDamage(damage);
+            }
+        }
+
         Destroy(gameObject);
 
         //Instantiate(impactEffect, transform.position, Quaternion.identity);
