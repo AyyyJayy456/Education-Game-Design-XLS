@@ -37,12 +37,11 @@ public class EnemyMovement : MonoBehaviour
         if(collision.Equals(bottomCollider.GetComponent<BoxCollider2D>()))
         {
             manager.IncreaseBreached();
+            Destroy(gameObject);
         }
         // else if(collision.CompareTag("Bullet"))
         // {
         //     manager.IncreaseKilled();
         // }
-
-        Destroy(gameObject);
     }
 }

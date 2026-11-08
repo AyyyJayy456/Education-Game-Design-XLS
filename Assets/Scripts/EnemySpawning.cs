@@ -14,6 +14,7 @@ public class EnemySpawning : MonoBehaviour
     [SerializeField] float spawnRate = 1;
     float timer;
     bool timeToSpawn;
+    [SerializeField] bool keepSpawning = true;
 
     // Enemy List, and Restriction
     [SerializeField] int maxEnemies;
@@ -39,7 +40,7 @@ public class EnemySpawning : MonoBehaviour
     {
         DetermineSpawning();
         
-        if(timeToSpawn)
+        if(timeToSpawn && keepSpawning)
         {
             SpawnEnemy();
         }
@@ -59,7 +60,9 @@ public class EnemySpawning : MonoBehaviour
 
         for(int i = 0; i < maxAttempts; i++)
         {
-            spawnPoint = new Vector2(Random.Range(wallOne.position.x, wallTwo.position.x), topBoundary.position.y);
+            //spawnPoint = new Vector2(Random.Range(wallOne.position.x, wallTwo.position.x), topBoundary.position.y);
+            spawnPoint = new Vector2(topBoundary.position.x, Random.Range(wallOne.position.y, wallTwo.position.y));
+
 
             Collider2D collider = Physics2D.OverlapBox(wallOne.transform.position, wallWidth, 0);
 
@@ -83,5 +86,10 @@ public class EnemySpawning : MonoBehaviour
             timeToSpawn = true;
             timer = 0;
         }
+    }
+
+    public void SetSpawning(bool val)
+    {
+        keepSpawning = val;
     }
 }

@@ -9,6 +9,7 @@ public class ImmunoWeapon : MonoBehaviour
     public Transform firePoint;
     public float cooldown;
     private float nextUseTime;
+    static bool isUnlocked = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +20,7 @@ public class ImmunoWeapon : MonoBehaviour
     void Update()
     {
         if (PauseManager.isPaused) return;
-        if (Input.GetKeyDown(KeyCode.E) && Time.time >= nextUseTime)
+        if (isUnlocked && Input.GetKeyDown(KeyCode.E) && Time.time >= nextUseTime)
         {
             nextUseTime = Time.time + cooldown;
 
@@ -27,5 +28,8 @@ public class ImmunoWeapon : MonoBehaviour
         }
     }
 
-
+    public static void UnlockWeapon()
+    {
+        isUnlocked = true;
+    }
 }

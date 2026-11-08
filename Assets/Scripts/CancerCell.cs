@@ -48,7 +48,7 @@ public class CancerCell : MonoBehaviour
 
         isTagged = true;
         sr.color = Color.cyan;
-        
+
         for (int i = 0; i < tCellNum; i++)
         {
             Vector3 worldPoint = Camera.main.ViewportToWorldPoint(RandomEdgePoint());

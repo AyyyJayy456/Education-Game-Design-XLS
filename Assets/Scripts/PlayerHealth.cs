@@ -28,4 +28,11 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log("Player is Overwhelmed. Retreat!");
         }
     }
+
+    public void TakeKnockback(Vector3 position,float amount)
+    {
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.velocity = Vector3.zero;
+        rb.AddForce((transform.position - position).normalized * amount, ForceMode2D.Impulse);
+    }
 }

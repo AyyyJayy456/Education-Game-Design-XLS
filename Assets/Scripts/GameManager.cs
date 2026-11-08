@@ -3,53 +3,65 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private int enemiesBreached;
     private int enemiesKilled;
+    private int enemiesBreached;
 
-    [SerializeField] TextMeshProUGUI breachedText;
     [SerializeField] TextMeshProUGUI killedText;
+    [SerializeField] TextMeshProUGUI breachedText;
 
     [SerializeField] int victoryRequirement;
     [SerializeField] int failureRequirement;
 
     private void Start()
     {
-        breachedText.text = "Cells Breached: " + enemiesBreached;
         killedText.text = "Cells Neutralized: " + enemiesKilled;
+        breachedText.text = "Cells Breached: " + enemiesBreached;
     }
 
     // Update is called once per frame
     void Update()
     {
-        DetermineOutcome();
+
     }
 
-    void DetermineOutcome()
+
+    public void IncreaseKilled()
     {
-        if(enemiesKilled >= victoryRequirement)
+        enemiesKilled++;
+        killedText.text = "Cells Neutralized: " + enemiesKilled;
+
+        if (enemiesKilled >= victoryRequirement)
         {
             // Temporary Code
             print("Victory Requirement Passed!");
         }
-        
-        if(enemiesBreached >= failureRequirement)
+    }
+    public void IncreaseBreached()
+    {
+        enemiesBreached++;
+        breachedText.text = "Cells Breached: " + enemiesBreached;
+
+        if (enemiesBreached >= failureRequirement)
         {
             // Temporary Code
             print("Failure Requirement Passed!");
         }
     }
 
-    public void IncreaseBreached()
+    public void SetQuota(int num)
     {
-        enemiesBreached++;
-        breachedText.text = "Cells Breached: " + enemiesBreached;
-        print("An enemy breached");
+        victoryRequirement = num;
+    }
+    public void SetFailureNum(int num)
+    {
+        failureRequirement = num;
     }
 
-    public void IncreaseKilled()
+    public void ResetText()
     {
-        enemiesKilled++;
+        enemiesBreached = 0;
+        enemiesKilled = 0;
+        breachedText.text = "Cells Breached: " + enemiesBreached;
         killedText.text = "Cells Neutralized: " + enemiesKilled;
-        print("An enemy died");
     }
 }
