@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8186920056143374762}
   - component: {fileID: 4380686173232772787}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: CancerCell
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
