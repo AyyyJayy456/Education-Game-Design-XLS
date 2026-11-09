@@ -4,43 +4,56 @@ using UnityEngine;
 
 public class EnemySpawning : MonoBehaviour
 {
-    // The Enemy Prefab and it's spawn location
-    [SerializeField] GameObject prefab;
+    [Header("Enemy Prefabs")]
+    [Tooltip("Slot 0: Standard Cell (CancerCell), Slot 1: Receptor Cell (enemy2)")]
+    [SerializeField] private GameObject[] enemyPrefabs;
+
+    [Range(0f, 1f)]
+    [Tooltip("Probability of spawning Enemy #2 (Receptor variant). e.g., 0.3 = 30%")]
+    [SerializeField] private float receptorEnemyChance = 0.35f;
+
     Vector2 spawnPoint;
 
-    // Cooldown, timer, and rate for spawning.
-    [SerializeField] float cooldown;
+
+    [Header("Spawn Settings")]
+    [SerializeField] float cooldown = 2f;
     float actualCooldown;
-    [SerializeField] float spawnRate = 1;
+    [SerializeField] float spawnRate = 1f;
     float timer;
     bool timeToSpawn;
-    [SerializeField] bool keepSpawning = true;
+    [SerializeField] bool keepSpawning = false;
 
-    // Enemy List, and Restriction
-    [SerializeField] int maxEnemies;
+    [Header("Restrictions & Hierarchy")]
+    [SerializeField] int maxEnemies = 10;
     [SerializeField] Transform enemyList;
 
-    // Walls and Boundary
+    [Header("Boundaries")]
     [SerializeField] Transform wallOne;
     [SerializeField] Transform wallTwo;
     [SerializeField] Transform topBoundary;
 
-    // Start is called before the first frame update
     void Start()
     {
         enemyList = GameObject.Find("EnemyList").transform;
-        timeToSpawn = true;
+        timeToSpawn = false;  
 
         actualCooldown = cooldown / spawnRate;
-        timer = actualCooldown;
+        timer = 0;
+    }
+    public void StartSpawning()
+    {
+        keepSpawning = true;
+        timeToSpawn = true;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
+        if (Time.timeScale == 0f) return;
+
         DetermineSpawning();
-        
-        if(timeToSpawn && keepSpawning)
+
+        if (timeToSpawn && keepSpawning)
         {
             SpawnEnemy();
         }
@@ -48,40 +61,39 @@ public class EnemySpawning : MonoBehaviour
 
     void SpawnEnemy()
     {
+        if (enemyPrefabs == null || enemyPrefabs.Length == 0) return;
+
         RandomizeSpawn();
-        Instantiate(prefab, spawnPoint, Quaternion.identity, enemyList);
+
+        // Choose which enemy to spawn based on probability
+        GameObject selectedPrefab = enemyPrefabs[0];
+        if (enemyPrefabs.Length > 1 && Random.value < receptorEnemyChance)
+        {
+            selectedPrefab = enemyPrefabs[1];
+        }
+
+        Instantiate(selectedPrefab, spawnPoint, Quaternion.identity, enemyList);
         timeToSpawn = false;
     }
-    
+
     void RandomizeSpawn()
     {
-        int maxAttempts = 10;
-        Vector2 wallWidth = wallOne.GetComponent<SpriteRenderer>().bounds.size;
+        if (wallOne == null || wallTwo == null || topBoundary == null) return;
 
-        for(int i = 0; i < maxAttempts; i++)
-        {
-            //spawnPoint = new Vector2(Random.Range(wallOne.position.x, wallTwo.position.x), topBoundary.position.y);
-            spawnPoint = new Vector2(topBoundary.position.x, Random.Range(wallOne.position.y, wallTwo.position.y));
-
-
-            Collider2D collider = Physics2D.OverlapBox(wallOne.transform.position, wallWidth, 0);
-
-            if(collider == null)
-            {
-                break;
-            }
-        }
+        // Spawn along the top horizontal span between left and right boundary walls
+        float spawnX = Random.Range(Mathf.Min(wallOne.position.x, wallTwo.position.x), Mathf.Max(wallOne.position.x, wallTwo.position.x));
+        spawnPoint = new Vector2(spawnX, topBoundary.position.y);
     }
 
     void DetermineSpawning()
     {
         timer += Time.deltaTime;
 
-        if(enemyList.childCount >= maxEnemies)
+        if (enemyList != null && enemyList.childCount >= maxEnemies)
         {
             timeToSpawn = false;
         }
-        else if(timer >= actualCooldown)
+        else if (timer >= actualCooldown)
         {
             timeToSpawn = true;
             timer = 0;

@@ -83,7 +83,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.9496855, g: 0.51836514, b: 0.23592801, a: 1}
+  m_Color: {r: 0.9490196, g: 0.2352941, b: 0.5009591, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -251,8 +251,8 @@ MonoBehaviour:
   puzzleType: 1
   targetAntigenId: BCMA
   receptorVisual: {fileID: 7178450758292451867}
-  activeColor: {r: 0, g: 1, b: 1, a: 1}
-  neutralizedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  activeColor: {r: 1, g: 0, b: 0.07058824, a: 1}
+  neutralizedColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!58 &3872017260274349197
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -389,8 +389,8 @@ MonoBehaviour:
   puzzleType: 1
   targetAntigenId: CD19
   receptorVisual: {fileID: 1708525642425925828}
-  activeColor: {r: 0, g: 1, b: 1, a: 1}
-  neutralizedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  activeColor: {r: 1, g: 0, b: 0.07058824, a: 1}
+  neutralizedColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!58 &1010011838878521574
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -527,8 +527,8 @@ MonoBehaviour:
   puzzleType: 1
   targetAntigenId: BCMA
   receptorVisual: {fileID: 6571589933759573037}
-  activeColor: {r: 0, g: 1, b: 1, a: 1}
-  neutralizedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  activeColor: {r: 1, g: 0, b: 0.07058824, a: 1}
+  neutralizedColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!58 &7710564135592766775
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -665,8 +665,8 @@ MonoBehaviour:
   puzzleType: 1
   targetAntigenId: CD19
   receptorVisual: {fileID: 4977321350943154339}
-  activeColor: {r: 0, g: 1, b: 1, a: 1}
-  neutralizedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  activeColor: {r: 1, g: 0, b: 0.07058824, a: 1}
+  neutralizedColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!58 &7407671857958662333
 CircleCollider2D:
   m_ObjectHideFlags: 0
