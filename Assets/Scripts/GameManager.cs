@@ -25,6 +25,15 @@ public class GameManager : MonoBehaviour
     [Header("Spawner Reference")]
     [SerializeField] private EnemySpawning spawner;
 
+    [Header("Results UI")]
+    [SerializeField] private GameObject resultsPanel;
+    [SerializeField] private TextMeshProUGUI resultsTitleText;
+    [SerializeField] private TextMeshProUGUI resultsStatsText;
+
+    private float levelTime = 0f;
+    private int immunotherapyShots = 0;
+    private bool levelWon = false;
+
     private bool isGameOver = false;
 
     private void Start()
@@ -39,8 +48,59 @@ public class GameManager : MonoBehaviour
 
         if (victoryPanel != null) victoryPanel.SetActive(false);
         if (failurePanel != null) failurePanel.SetActive(false);
+        if (resultsPanel != null) resultsPanel.SetActive(false);
 
         UpdateUI();
+    }
+
+    private void Update()
+    {
+        if (!isGameOver)
+        {
+            levelTime += Time.deltaTime;
+        }
+    }
+
+    public void RegisterImmunotherapyShot()
+    {
+        if (isGameOver)
+        {
+            return;
+        }
+        immunotherapyShots++;
+    }
+
+    public void OpenResults()
+    {
+        if (levelWon)
+        {
+            victoryPanel.SetActive(false);
+        }
+        else
+        {
+            failurePanel.SetActive(false);
+        }
+        resultsTitleText.text = levelWon ? "LEVEL CLEARED" : "RETREAT AND REGROUP";
+        resultsStatsText.text =
+            $"Cells Neutralized: {enemiesKilled} / {victoryRequirement}\n" +
+            $"Cells Breached: {enemiesBreached} / {failureRequirement}\n" +
+            $"Time: {(int)levelTime / 60:00}:{(int)levelTime % 60:00}\n" +
+            $"Immunotherapy Shots: {immunotherapyShots}";
+
+        resultsPanel.SetActive(true);
+    }
+
+    public void CloseResults()
+    {
+        resultsPanel.SetActive(false);
+        if (levelWon)
+        {
+            victoryPanel.SetActive(true);
+        }
+        else
+        {
+            failurePanel.SetActive(true);
+        }
     }
 
     public void IncreaseKilled()
@@ -72,6 +132,7 @@ public class GameManager : MonoBehaviour
     private void TriggerVictory()
     {
         isGameOver = true;
+        levelWon = true;
 
         if (spawner != null)
         {
@@ -94,6 +155,7 @@ public class GameManager : MonoBehaviour
     private void TriggerFailure()
     {
         isGameOver = true;
+        levelWon = false;
 
         if (spawner != null)
         {

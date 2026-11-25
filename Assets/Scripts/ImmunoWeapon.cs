@@ -7,6 +7,7 @@ public class ImmunoWeapon : MonoBehaviour
 {
     public GameObject tagShot;
     public Transform firePoint;
+    public GameManager gameManager;
     public float cooldown;
     private float nextUseTime;
     static bool isUnlocked = false;
@@ -25,6 +26,7 @@ public class ImmunoWeapon : MonoBehaviour
             nextUseTime = Time.time + cooldown;
 
             Instantiate(tagShot, firePoint.position, firePoint.rotation);
+            gameManager.RegisterImmunotherapyShot();
         }
     }
 
