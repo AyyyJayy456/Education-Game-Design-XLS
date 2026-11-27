@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public float moveSpeed;
     public Rigidbody2D rb;
+    public float damage;
 
     //public GameObject impactEffect;
 
@@ -25,7 +26,12 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Destroy(collision.gameObject);
+            CancerCell cell = collision.gameObject.GetComponent<CancerCell>();
+            
+            if (cell != null)
+            {
+                cell.TakeDamage(damage);
+            }
         }
 
         Destroy(gameObject);
